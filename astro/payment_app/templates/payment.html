@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Razorpay Payment</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #payment-form {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #payment-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        #payment-form input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #payment-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        #payment-form button:hover {
+            background-color: #45a049;
+        }
+
+        body {
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/back_our/20190625/ourmid/pngtree-blue-mobile-phone-scan-code-payment-technology-banner-background-image_260854.jpg');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Razorpay Payment Form</h1>
+    <form id="payment-form">
+        {% csrf_token %}
+        <div>
+            <label for="name">Name :</label>
+            <input type="text" id="name" name="name" required minlength="3" maxlength="50"> <br>
+            <label for="amount">Enter Amount (in INR):</label>
+            <input type="number" id="amount" name="amount" required min="1">
+            <br>
+            <button type="button" id="pay-button">Pay Now</button>
+        </div>
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            $("#pay-button").click(function (e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                // Validate the form inputs
+                const name = $("#name").val();
+                const amount = $("#amount").val();
+
+                if (name.length < 3 || name.length > 50) {
+                    alert("Please enter a valid name (3-50 characters).");
+                    return;
+                }
+
+                if (amount <= 0) {
+                    alert("Please enter a valid amount greater than 0.");
+                    return;
+                }
+
+                // Make an AJAX request to initiate the payment
+                $.ajax({
+                    type: "POST",
+                    url: "/payment/initiate-payment/",
+                    data: { name :name, amount: amount },
+                    dataType: "json",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", $("[name=csrfmiddlewaretoken]").val());
+                    },
+                    success: function (data) {
+                        // Initialize Razorpay Checkout with the received values
+                        const options = {
+                            key: data.key,
+                            amount: data.amount,
+                            currency: data.currency,
+                            order_id: data.id,
+                            name: data.name,
+                            description: data.description,
+                            image: data.image,
+                            handler: function (response) {
+                                // Handle the payment success or failure and redirect accordingly
+                                if (response.razorpay_payment_id) {
+                                    data :{name:name,amount:amount,order_id:order_id}
+                                    window.location.href = "/payment/payment-success/";
+                                } else {
+                                    // Payment failed or canceled, redirect to the failure URL
+                                    window.location.href = "/payment/payment-failed/";
+                                }
+                            },
+                            prefill: {
+                                name: "Customer Name",
+                                email: "customer@example.com",
+                                contact: "customer_contact",
+                            },
+                        };
+
+                        const rzp = new Razorpay(options);
+                        rzp.open();
+                    },
+                    error: function (error) {
+                        console.error("Error initiating payment:", error);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("contextmenu", (event) => {
+            event.preventDefault();
+        });
+    </script>
+</body>
+
+</html>

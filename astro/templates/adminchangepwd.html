@@ -1,0 +1,64 @@
+{% extends 'adminhome.html' %}
+
+{% block b1 %}
+<h2 align="right" style="color:red">Welcome, {{admin }}</h2><br>
+<div class="card">
+    <h2 align="center" style="color:red">{{message}}</h2><br>
+    <h3 align="center"><u>Change Password</u></h3><br>
+    <center>
+    <form method="post" action="" >
+        {% csrf_token %}
+        <table align="center" width="35%" height="30%">
+            <tr>
+                <td>
+                    <label>Enter Old Password</label>
+                </td>
+                <td>
+                    <input type="password" name="opwd" required>
+                </td>
+
+            <tr>
+                <td>
+                    <label>Enter New Password</label>
+                </td>
+                <td>
+                    <input type="password" name="npwd" required>
+                </td>
+            </tr>
+>
+
+            <tr>
+                <td>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" value="Update" class="button-1"/>
+                </td>
+                <td>
+                    <input type="reset" value="Clear" class="button-1"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+    </center>
+     <script>
+      document.addEventListener("contextmenu", (event) => {
+         event.preventDefault();
+      });
+   </script>
+</div>
+{% endblock %}
+<script type="text/javascript">
+      // Disable the browser's back button
+      history.pushState(null, null, location.href);
+      window.onpopstate = function () {
+         history.go(1);
+      };
+   </script>

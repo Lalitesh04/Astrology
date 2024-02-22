@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback Report</title>
+    <!-- Import the mpld3 JavaScript library for interactivity -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mpld3/0.5.2/mpld3.min.js"></script>
+</head>
+<body>
+    <h1>Feedback Report</h1>
+
+    <h2>Satisfaction Level Chart</h2>
+    {{ chart_html|safe }}
+
+    <h2>Summary Statistics</h2>
+    {{ summary_stats|safe }}
+
+   <script>
+      document.addEventListener("contextmenu", (event) => {
+         event.preventDefault();
+      });
+   </script>
+</body>
+</html>

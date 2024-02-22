@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<center>
+<h2 align="center" style="color:red">{{msg}}</h2><br>
+<body>
+    <div class="container" >
+        <br>
+        <h1 style="color:white">Registration Page</h1><br>
+        <form method="post" style="color:white" >
+            {% csrf_token %}
+            {{ form.as_p }}
+             <input type="submit" value="Submit" >
+             <input type="reset" value="Clear" >
+        </form>
+    </div>
+</body>
+    </center>
+
+{% endblock %}

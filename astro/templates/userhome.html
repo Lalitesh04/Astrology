@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title >AstroPrediction</title>
+</head>
+<body>
+ <title>
+        {% block 'title' %}
+        Main Home
+        {% endblock %}
+    </title>
+</head>
+<body>
+
+<h3 align="center" style="color:white">ASTROLOGY PREDICTION SYSTEM</h3>
+<hr><hr>
+<style >
+body, html {
+  height: 100%;
+}
+body {
+  background-image: url("https://www.sohinisastri.com/wp-content/uploads/2021/05/banner.jpg");
+    height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+    nav {
+  background-color: #333; /* change the background color to your desired color */
+  overflow: hidden;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav li {
+  margin: 0;
+}
+
+nav a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background-color: #ddd ; /* change the hover background color to your desired color */
+  color: black;
+}
+
+</style>
+<nav>
+    <ul>
+        <li><a href="{% url 'userhome' %}">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+        <li><a href="{% url 'checksign' %}">Check sign</a>&nbsp;&nbsp;</li>
+</li>
+
+        <li><a href="{% url 'horoscope' %}">Horoscope</a>&nbsp;&nbsp;</li>
+        <li><a href="{% url 'userchangepwd' %}">Change Password</a>&nbsp;&nbsp;</li>
+        <li><a href="{% url 'feedback' %}">Feedback</a>&nbsp;&nbsp;</li>
+         <li><a href="{% url 'initiate_payment' %}">Donate</a>&nbsp;&nbsp;</li>
+        <li><a href="{% url 'logout' %}">Logout</a>&nbsp;&nbsp;</li>
+
+         </ul>
+</nav>
+<br><br>
+<h3 align="right"style="color:White">Welcome, {{user}}</h3>
+<h1 style="color:white">Login Successfull</h1>
+<h2 style="color:white">
+    You can check your zodiac sign now!
+    <br>
+
+</h2>
+{%include 'endbar1.html'%}
+</body>
+</body>
+</html>
+ <script>
+      document.addEventListener("contextmenu", (event) => {
+         event.preventDefault();
+      });
+   </script>
+<0-
+ <script type="text/javascript">
+      // Disable the browser's back button
+      history.pushState(null, null, location.href);
+      window.onpopstate = function () {
+         history.go(1);
+      };
+   </script>
+    {{ redirect_to_login_immediately }}

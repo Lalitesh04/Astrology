@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>checksign</title>
+
+    <style>
+        body{
+
+ background-repeat: no-repeat;
+  background-size: 36%;
+  background-position: right 600px top 370px;
+   color:#1C5188;
+ background:linear-gradient(to bottom,pink, #FEF0EF 60%);
+  font-family: 'Lato', sans-serif;
+  font-size:20px;
+  text-align:center;
+}
+
+#characteristic {
+
+   margin: auto;
+    width: 60%;
+color:orange;
+    padding: 21px;
+}
+
+ #animated{
+  animation-name: move;
+  animation-duration: 5s;
+  nimation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+ cursor: url("http://downloads.totallyfreecursors.com/cursor_files/gold_star.ani"), url("http://downloads.totallyfreecursors.com/thumbnails/gold_star.gif"), auto;
+}
+
+
+#space{
+  font-size:25px;
+
+}
+
+a.button {
+  background: linear-gradient(45deg, rgba(255,184,115,0.65) 0%,rgba(255,124,189,0.65) 50%,rgba(108,0,153,0.65) 100%);
+	border-radius: 7px;
+  margin-bottom:70px;
+	box-shadow: 0px 2px 4px rgba(34,62,66,.25);
+  color: purple;
+  font-size: 20px;
+  letter-spacing: 2px;
+  padding: 6px 22px;
+  text-decoration: none;
+  -webkit-transition: box-shadow 1s ease;
+	transition: box-shadow 1s ease;
+  hover {
+	box-shadow: 0px 4px 4px rgba(33,62,66,.5);
+	-webkit-transition: box-shadow 1s ease;
+	transition: box-shadow 1s ease;
+
+  }
+
+
+
+    </style>
+    <script>
+        function zodiac(){
+  var birthmonth = document.getElementById("month").value;
+   var birthday = document.getElementById("day").value;
+ var result = " unknown because you didn't put a valid date.";
+
+
+if (birthmonth == 1&& birthday >= 20 || birthmonth == 2 && birthday <= 18
+    ){
+        result = ("Aquarius");
+     document.getElementById("photo").innerHTML="<img src='https://www.horoscope.com/images-US/signs/profile-aquarius.png'width=20%>";
+   document.getElementById("characteristic").innerHTML="Aquarians are extremely vulnerable and sensitive. Although you may often find them being surrounded by many friends but in reality they rarely have close friends and acquaintances. Aquarius is a universal sign which makes them public people. Hence Aquarians are often associated with clubs, organizations and forums and enthusiastically participate in intellectual discussions. Aquarians are great communicators as long as they are within their mental realm.";
+
+    }
+
+    if (birthmonth == 2&& birthday >= 19 || birthmonth == 3&& birthday <= 20){
+       result = ("Pisces");
+       document.getElementById("photo").innerHTML="<img src='https://www.horoscope.com/images-US/signs/profile-pisces.png'width=20%>";
+      document.getElementById("characteristic").innerHTML="Pisceans live in their imaginary world that barely has a connection with the reality. They love to look at the world through a rosy window. When challenged by reality, Pisceans have the tendency to retreat into their world of imagination.";
+
+    }
+   if (birthmonth == 3&& birthday >= 21 || birthmonth == 4 && birthday <= 19){
+       result = ("Aries");
+      document.getElementById("photo").innerHTML="<img src='https://www.horoscope.com/images-US/signs/profile-aries.png'width=20%>";
+     document.getElementById("characteristic").innerHTML="Aries demonstrate strong personality. They have strong leadership qualities and honest and straightforward. Aries often have strong determination and can’t be deterred by failures.Aries are always eager for action. They take up to leadership spontaneously. But they don’t judge the pros and cons of a situation before acting. This also makes them vulnerable.";
+   }
+
+    if (birthmonth == 4&& birthday >= 20|| birthmonth == 5 && birthday <= 20){
+        result = ("Taurus");
+       document.getElementById("photo").innerHTML="<img src='https://www.horoscope.com/images-US/signs/profile-taurus.png'width=20%>";
+       document.getElementById("characteristic").innerHTML="Taureans are noted for their determination and zeal. It is not easy to distract a Taurian from his goal once he has set his target. He would stay focused on his target and would continuously strive to achieve it.Taureans attach high value to simplicity and functionality. They often live a life that is simple and devoid of luxury.";
+
+    }
+
+    if (birthmonth == 5&& birthday >= 21 || birthmonth == 6 && birthday <= 20
+     ){
+        result = ("Gemini");
+       document.getElementById("photo").innerHTML="<img src='https://www.horoscope.com/images-US/signs/profile-gemini.png'width=20%>";
+      document.getElementById("characteristic").innerHTML="Geminis are full of duality. They always look to a situation from dual perspective. Geminis are characterized by inconstancy and dual nature. Geminis therefore always stay confused about their feelings.Geminis however are strong communicators and express good control over language. They are often found to have knowledge over several languages.";
+
+    }
+
+    if (birthmonth == 6&& birthday >= 21 || birthmonth == 7&& birthday <= 22){
+        result = ("Cancer");
+       document.getElementById("photo").innerHTML="<img src='https://www.horoscope.com/images-US/signs/profile-cancer.png'width=20%>";
+      document.getElementById("characteristic").innerHTML="Cancerians are emotional. Their lives are often inflicted with mood shifts. You can find a Canerian in different moods even during a day.The true emotion of Cancer however is hidden behind their composure. But they are soft creatures and can be hurt easily by unkind words.People of the Cancer zodiac sign can be prone to depression and other mental issues. However, cancers are great family people and enjoy big families around them.";
+
+    }
+    if (birthmonth == 7&& birthday >= 23 || birthmonth == 8 && birthday <= 22){
+        result = ("Leo");
+       document.getElementById("photo").innerHTML="<img src='https://www.horoscope.com/images-US/signs/profile-leo.png'width=20%>";
+            document.getElementById("characteristic").innerHTML="Leos are warm spirited. They are full of energy and always eager to jump into action. Leos crave for recognition and admiration. Leos always love to be at the centre of attraction. They strive to reach to the top in whatever they do. Leos always love to be surrounded with large crowd and admirers. However, they are often unkind to criticism and don’t take the words of critics lightly.Leos are very ambitious and choose their acquaintances carefully. They aspire for social recognition.";
+
+    }
+    if (birthmonth == 8 && birthday >= 23 || birthmonth == 9 && birthday <= 22){
+        result = ("Virgo");
+       document.getElementById("photo").innerHTML="<img src='https://www.horoscope.com/images-US/signs/profile-virgo.png'width=20%>";
+        document.getElementById("characteristic").innerHTML="Virgos have a keen sense of good and bad and for that they are highly discriminating. They have an intuitive sense to identify wrong motives in people. Hence, Virgos exercise extreme caution in what they do.The virgin defines purity and therefore they are endowed with the ability to distinguish the good from the bad. Hence, Virgos are also cleanliness freaks. Despite their intelligence Virgos often remain confused about the decisions they make in their life. Also, you will not find Virgos teeming with activities.";
+    }
+    if (birthmonth == 9&& birthday >= 23 || birthmonth == 10&& birthday <= 22){
+      result = ("Libra");
+       document.getElementById("photo").innerHTML="<img src='https://www.horoscope.com/images-US/signs/profile-libra.png'width=20%>";
+        document.getElementById("characteristic").innerHTML="Libra is an active sign and members born under the sign are endowed with high energy. But Librans also tend to run out of their energy soon.The Libra is the ‘balance’ and members of this sign have a very balanced mind. They can be found in settling disputes often. Librans always try to maintain harmony and balance. They are also very level headed and have a keen sense for justice. Therefore, their suggestions are often highly sought after by their friends and kins.Librans are two faceted characters. They both have the cheerfulness and darkness in them. Librans have phases of heightened activities but they can easily slip into a phases of complete inactivity and apathy as well.";
+    }
+    if (birthmonth == 10 && birthday >= 23|| birthmonth == 11 && birthday <= 21){
+       result = ("Scorpio");
+       document.getElementById("photo").innerHTML="<img src='https://www.horoscope.com/images-US/signs/profile-scorpio.png'width=20%>";
+        document.getElementById("characteristic").innerHTML="Scorpions are most diverse in nature and therefore present the most interesting study. Scorpios hold grudge and would wait patiently for the right moment to strike. They are not likely to forget any act of betrayal or treachery. For Scorpios what is implied is more fascinating than the obvious.Scorpios are often described as egoists. However, some of the positive traits of Scorpios are- diplomacy, intuition, intelligence, engaging, resolute, spirituality and sensitivity.";
+    }
+    if (birthmonth == 11 && birthday >= 22 || birthmonth == 12 && birthday <= 21){
+        result = ("Sagittarius");
+       document.getElementById("photo").innerHTML="<img src='https://www.horoscope.com/images-US/signs/profile-sagittarius.png'width=20%>";
+        document.getElementById("characteristic").innerHTML="Sagittarians are the incurable optimists. They are always looking at the positive side of a thing. Their optimism can’t be dampened by hardships or negative results.Sagittarians often are outdoor people. They will take interest in all sorts of sports and outdoor activities. They are also adventures in nature. Although they are true to their faults but can also turn completely deaf to criticism and turn down suggestions.";
+    }
+
+  if(birthmonth == 12 && birthday >= 22 || birthmonth == 1 && birthday <= 19){
+
+        result = ("Capricorn");
+     document.getElementById("photo").innerHTML="<img src='https://www.horoscope.com/images-US/signs/profile-capricorn.png'width=20%>";
+     document.getElementById("characteristic").innerHTML="Members of this sign has an insatiable desire to climb higher and during this course they can also become selfish and might not hesitate to sacrifice other’s interests in fulfilling their goals.Capricorns may seem risk averse but in reality they carefully plan all their moves ahead and rehearse them to perfection.";
+    }else if (birthmonth>12||birthday>31){
+       alert("Please enter an accurate date ! ");
+    }
+ document.getElementById("output").innerHTML= result;
+}
+
+    </script>
+</head>
+<body>
+
+<h3 align="center" style="color:white">ZODIACSIGN</h3>
+<hr><hr>
+<style >
+body, html {
+  height: 100%;
+}
+body {
+  background-image: url("https://www.sohinisastri.com/wp-content/uploads/2021/05/banner.jpg");
+    height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+    nav {
+  background-color: #333; /* change the background color to your desired color */
+  overflow: hidden;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav li {
+  margin: 0;
+}
+
+nav a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background-color: #ddd; /* change the hover background color to your desired color */
+  color: black;
+}
+    input {
+    font-size: 20px;
+    padding: 10px;
+    display: block;
+    margin: 0 auto; /* Center-align the input fields horizontally */
+    width: 5%;
+}
+label {
+    font-size: 50px; /* Adjust the font size to your preference */
+}
+
+</style>
+<nav>
+    <ul>
+        <li><a href="{% url 'userhome' %}">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+        <li><a href="{% url 'checksign' %}">Check sign</a>&nbsp;&nbsp;</li>
+</li>
+
+        <li><a href="{% url 'horoscope' %}">Horoscope</a>&nbsp;&nbsp;</li>
+          <li><a href="{% url 'userchangepwd' %}">Change Password</a>&nbsp;&nbsp;</li>
+        <li><a href="{% url 'feedback' %}">Feedback</a>&nbsp;&nbsp;</li>
+         <li><a href="{% url 'initiate_payment' %}">Donate</a>&nbsp;&nbsp;</li>
+        <li><a href="{% url 'logout' %}">Logout</a>&nbsp;&nbsp;</li>
+
+         </ul>
+</nav>
+<br><br>
+
+<div id = "box">
+<h1 style="color:white"> What is your constellation sign ?</h1>
+</div>
+<h2 style="color:white"> Enter your birthday. </h2>
+<b><p style="color:white">Month:<input type="number" id="month" min="1" max="12" ></p></b>
+<b><p style="color:white"> Day:<input type="number" id="day" min="1" max="31"></p></b>
+<a id="animated" onclick="zodiac()"  class="button">Find your zodiac sign! </a>
+<p id="photo"></p>
+<p id= "space"> Your zodiac sign is <span id="output"></span> </p>
+
+<p id="characteristic"></p>
+<img src="http://sweetclipart.com/multisite/sweetclipart/files/astrology_set_clipart_color_2.png" width=32%>
+
+
+
+</body>
+</html>
+ <script>
+      document.addEventListener("contextmenu", (event) => {
+         event.preventDefault();
+      });
+   </script>
+<script type="text/javascript">
+    (function(d, m){
+        var kommunicateSettings =
+            {"appId":"11e5b7d6e4453daa81cf2a87f98ffc28f","popupWidget":true,"automaticChatOpenOnNavigation":true};
+        var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+        s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+        var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+        window.kommunicate = m; m._globals = kommunicateSettings;
+    })(document, window.kommunicate || {});
+/* NOTE : Use web server to view HTML files as real-time update will not work if you directly open the HTML file in the browser. */
+</script>
+ <script type="text/javascript">
+      // Disable the browser's back button
+      history.pushState(null, null, location.href);
+      window.onpopstate = function () {
+         history.go(1);
+      };
+   </script>
