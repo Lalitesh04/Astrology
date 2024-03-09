@@ -26,17 +26,17 @@ td, th {
   padding: 8px;
 }
 </style>
-<h2 align="center"><b>View Donations</b></h2>
+<h2 class="text-2xl py-4" align="center"><b>View Donations</b></h2>
 <div class="flex-container" >
-        <div class="flex-item" align="left">
+        <div class="flex-item mx-12" align="left">
             <h4>Donations count: {{ count }}</h4>
         </div>
-        <div class="flex-item" align="right">
+        <div class="flex-item mx-12" align="right">
             <h4>Total Amount: $  {{ total_amount }}</h4>
         </div>
     </div>
 <br>
-    <input class="form-control" id="myInput" type="text" placeholder="enter name" width="20%">
+                <input required type="text" name="username" autocomplete="off" class=  " form-control text-white bg-slate-900 w-72 mx-12 rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Search  Name" id="myInput" >
     <br/><br/><br/>
     <table class="table table-bordered table-striped" align="center" width="100%">
         <thead>
@@ -44,6 +44,7 @@ td, th {
                 <td>#</td>
                 <td>Name</td>
                 <td>Amount</td>
+                <td>Transaction Id</td>
             </tr>
         </thead>
 
@@ -53,6 +54,7 @@ td, th {
                     <td>{{ forloop.counter }}</td>
                     <td>{{ i.name }}</td>
                     <td>{{ i.amount}}</td>
+                    <td>{{i.orderid}}</td>
                 </tr>
             {% endfor %}
         </tbody>

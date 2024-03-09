@@ -23,8 +23,9 @@ class register(models.Model):
 
 
 class Feedback(models.Model):
-    customer_name = models.CharField(max_length=120)
+    customer_name = models.CharField(max_length=30)
     email = models.EmailField()
+    contact = models.CharField(max_length=30 ,default="123456")
     feedback = models.TextField()
     happy = models.BooleanField()
     date = models.DateField(auto_now_add=True)
@@ -35,7 +36,7 @@ class Feedback(models.Model):
 
 class Admin(models.Model):
     id = models.AutoField(primary_key=True)
-    name=models.CharField(max_length=20,unique=True,blank=False)
+    name = models.CharField(max_length=20, unique=True, blank=False)
     username = models.CharField(max_length=20, unique=True, blank=False)
     password = models.CharField(max_length=20, unique=True, blank=False)
 

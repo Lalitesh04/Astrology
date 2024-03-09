@@ -1,5 +1,69 @@
 {% include 'adminhome.html'%}
-{% block b1%}
-<br><br<br<br
-  <h1 style="">  view feedback</h1>
-{% endblock %}
+{% block 'body'%}
+<style>
+    a{
+        text-decoration: none;
+        color:white
+        }
+    table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 60%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<h1 align="center"><font color="white">View Feedback</font></h1>
+<h4><font  color="white">Total FeedBack : {{ count }}</font></h4>
+
+<br/>
+ <input class="form-control" id="myInput" type="text" placeholder="enter name" width="20%">
+    <br/><br/><br/>
+    <table class="table table-bordered table-striped" align="center" width="60%">
+        <thead>
+            <tr bgcolor="lightgrey" align="center">
+                <td>#</td>
+                <td>Customer name</td>
+                <td>Email</td>
+                <td>Feedback</td>
+                <td>Happy</td>
+                <td>Contact</td>
+                <td>Send email</td>
+            </tr>
+        </thead>
+
+        <tbody id="myTable" >
+            {% for i in data %}
+                <tr align="center" bgcolor="lightgrey">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ i.customer_name }}</td>
+                    <td>{{ i.email }}</td>
+                     <td>{{ i.feedback}}</td>
+                    <td>{{ i.happy}}</td>
+                    <td>{{ i.contact }}</td>
+                    <td><a href="mailto:{{i.email}}">Reply</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+{% endblock%}
+

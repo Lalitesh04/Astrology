@@ -60,7 +60,7 @@
     <form id="payment-form">
         {% csrf_token %}
         <div>
-            <label for="name">Name :</label>
+            <label for="name">Name:</label>
             <input type="text" id="name" name="name" required minlength="3" maxlength="50"> <br>
             <label for="amount">Enter Amount (in INR):</label>
             <input type="number" id="amount" name="amount" required min="1">
@@ -72,9 +72,8 @@
     <script>
         $(document).ready(function () {
             $("#pay-button").click(function (e) {
-                e.preventDefault(); // Prevent the default form submission
+                e.preventDefault();
 
-                // Validate the form inputs
                 const name = $("#name").val();
                 const amount = $("#amount").val();
 
@@ -88,17 +87,15 @@
                     return;
                 }
 
-                // Make an AJAX request to initiate the payment
                 $.ajax({
                     type: "POST",
                     url: "/payment/initiate-payment/",
-                    data: { name :name, amount: amount },
+                    data: { name: name, amount: amount },
                     dataType: "json",
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader("X-CSRFToken", $("[name=csrfmiddlewaretoken]").val());
                     },
                     success: function (data) {
-                        // Initialize Razorpay Checkout with the received values
                         const options = {
                             key: data.key,
                             amount: data.amount,
@@ -108,19 +105,16 @@
                             description: data.description,
                             image: data.image,
                             handler: function (response) {
-                                // Handle the payment success or failure and redirect accordingly
                                 if (response.razorpay_payment_id) {
-                                    data :{name:name,amount:amount,order_id:order_id}
                                     window.location.href = "/payment/payment-success/";
                                 } else {
-                                    // Payment failed or canceled, redirect to the failure URL
                                     window.location.href = "/payment/payment-failed/";
                                 }
                             },
                             prefill: {
-                                name: "Customer Name",
-                                email: "customer@example.com",
-                                contact: "customer_contact",
+                                name: name,
+                                email: "customer@example.com", // You might want to collect and use the customer's email
+                                contact: "customer_contact", // You might want to collect and use the customer's contact
                             },
                         };
 
@@ -136,7 +130,7 @@
     </script>
 
     <script>
-        document.addEventListener("contextmenu", (event) => {
+        document.addEventListener("contextmenu", function (event) {
             event.preventDefault();
         });
     </script>

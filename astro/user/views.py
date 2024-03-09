@@ -1,5 +1,6 @@
 import matplotlib
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -19,16 +20,7 @@ def home(request):
 
 
 def registration(request):
-    form1 = registerForm()
-    if request.method == "POST":
-        form = registerForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')  # Redirect to home after successful registration
-        else:
-            msg = "Failed Registration"
-            return render(request, "register.html", {"msg": msg, "form": form1})
-    return render(request, "register.html", {"form": form1})
+    return render(request, "register.html", )
 
 
 def checklogin(request):
@@ -72,7 +64,8 @@ def feedback_form(request):
 
 
 def userhome_render(request):
-    return render(request, "userhome.html")
+    uname = request.session["user_name"]
+    return render(request, "userhome.html", {"uname": uname})
 
 
 def checksign(request):
@@ -186,6 +179,7 @@ def userchangepwd(request):
     return render(request, "userchangepwd.html", {"uname": uname})
 
 
+@login_required
 def userupdatepwd(request):
     uname = request.session["user_name"]
     print(uname)
@@ -263,3 +257,32 @@ def deleteuserid(request, uid):
     register.objects.filter(id=uid).delete()
     return redirect("deleteuser")
 
+
+def viewfeedback(request):
+    count = Feedback.objects.count()
+    feedback = Feedback.objects.all()
+    return render(request, "viewfeedback.html", {"count": count, "data": feedback})
+
+
+def userregistration(request):
+    if request.method == "POST":
+        name = request.POST["name"]
+        gender = request.POST["gender"]
+        email = request.POST["email"]
+        username = request.POST["username"]
+        password = request.POST["password"]
+        phoneno = request.POST["phoneno"]
+
+        new_register = register(name=name, gender=gender, email=email, username=username, password=password,
+                                contact=phoneno)
+        new_register.save()
+        messages.info(request, " Data inserted SuccessFully")
+        return render(request, "userlogin.html")
+    return redirect(register)
+
+
+def adminhome(request):
+    admin = request.session["admin_name"]
+    count = register.objects.count()
+    fd = Feedback.objects.count()
+    return render(request, "adminhome.html", {"admin": admin, "count": count, "fd": fd})

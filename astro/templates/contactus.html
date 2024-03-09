@@ -1,63 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-<style>
-    /* Reset some default styles */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    /* Set a background color */
-    body {
-        background-color: #f2f2f2;
-        font-family: Arial, sans-serif;
-    }
-
-    /* Style the contact container for this specific page */
-    .contact-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-    }
-
-    /* Style the card container */
-    .card {
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        padding: 3rem; /* Increase the padding to center the content and make it bigger */
-        text-align: center;
-    }
-
-    /* Style the contact information */
-    .contact-info {
-        font-weight: bold;
-        font-size: 18px; /* Increase the font size for better readability */
-    }
-
-    /* Style for the icons */
-    .icon {
-        font-size: 32px; /* Increase the icon size */
-        margin-right: 10px;
-    }
-</style>
-<body>
-    <div class="contact-container">
-        <div class="card">
-           <b> <u><h3>Contact Us</h3></u></b><br>
-            <p class="contact-info space">
-                <i class="fas fa-envelope icon"></i>Email: astropred@astro.com
-            </p>
-            <p class "contact-info space">
-                <i class="fas fa-phone icon"></i><b>Phone: +91 9492408318</b>
-            </p>
-            <p class="contact-info space">
-                <i class="fas fa-map-marker-alt icon"></i>Address: Vijayawada, Andhra Pradesh
-            </p>
-        </div>
+<div class="flex justify-center items-center my-40">
+<div class="text-white py-4 my-4 mx-auto max-w-sm bg-slate-900 shadow-lg rounded-lg px-5">
+    <div class="px-3 py-4">
+        <h3 class=" mx-12 font-bold text-lg mb-4">Contact Us</h3>
+        <p class="flex items-center mb-2">
+          <!-- Email Icon -->
+          <i class="fas fa-envelope mr-2"></i><span class="font-bold">Email: test@kluniversity.in</span>
+        </p>
+        <p class="flex items-center mb-2">
+          <!-- Phone Icon -->
+          <i class="fas fa-phone mr-2"></i><span class="font-bold">Phone: +91 9492408318</span>
+        </p>
+        <p class="flex items-center mb-2">
+          <!-- Location Icon -->
+         <i class="fa-solid fa-location-pin mr-2"></i><span class="font-bold">Address: Vijayawada, Andhra Pradesh</span>
+        </p>
     </div>
-</body>
+</div>
+</div>
 {% endblock %}
