@@ -9,6 +9,8 @@
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 60%;
+  overflow-x: auto;
+  
 }
 
 td, th {
@@ -23,8 +25,9 @@ tr:nth-child(even) {
 </style>
 <h1 align="center"><font color="white">View Feedback</font></h1>
 <h4><font  color="white">Total FeedBack : {{ count }}</font></h4>
-
 <br/>
+<a class="text-xl rounded-lg bg-white text-black  px-3 py-4 " href="{% url 'feedback_report' %}">Report</a>
+<br/><br/><br/>
  <input class="form-control" id="myInput" type="text" placeholder="enter name" width="20%">
     <br/><br/><br/>
     <table class="table table-bordered table-striped" align="center" width="60%">

@@ -1,9 +1,6 @@
 {% extends 'adminhome.html'%}
 
 {% block 'body'%}
-
-<h2 align="center"><b>Add User</b></h2>
-<br>
 {% for i in messages%}
     <h3>{{i}}</h3>
 {% endfor%}
@@ -85,48 +82,37 @@ a {
 }
 </style>
 <br/><br/>
-<div>
-    <form method="post" action="{% url 'checkregistion' %}">
+<div class="flex justify-center contents-center">
+     <form method="post" action="{% url 'userregistration'%}">
         {% csrf_token %}
-        <table align="center" width="30%" height="40%">
-                <tr>
-                <td><label>Name</label></td>
-                <td><input type="text" name="name" required></td>
-            </tr>
-
-            <tr>
-                <td><label>Gender</label></td>
-                <td>
-                    <select name="gender" required>
-                        <option value="">--select--</option>
-                        <option value="MALE">Male</option>
-                        <option value="FEMALE">Female</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td><label>Email </label></td>
-                <td> <input type="email"  name="email" required></td>
-             </tr>
-
-            <tr>
-                <td><label>Username </label></td>
-                <td><input type="text"  name="username" required></td>
-            </tr>
-            <tr>
-                <td><label>Password</label></td>
-                <td><input type="password" name="password" required></td>
-            </tr>
-            <tr>
-                 <td><label>Contact No</label></td>
-                <td> <input type="number"  name="phoneno" required></td>
-            <tr >
-                <td><input type="submit" name="Add" class="button-17" /></td>
-                <td><input type="reset" name="Clear" class="button-17"></td>
-            </tr>
-
-        </table>
-    </form>
+        <div class=" max-w-screen-xl w-80 rounded-2xl bg-slate-900 text-white">
+          <div class="flex flex-col my-2 gap-4 p-8">
+            <p class="text-center text-3xl text-gray-300 mb-4">Add User</p>
+            <input required name="name" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Full Name">
+            <select required name="gender" id="gender" class="bg-slate-800 w-full rounded-lg border border-gray-300 px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" aria-label="Select Gender">
+              <option value="" disabled selected>Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+            <input required type="email" name="email" class="bg-slate-900 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Email">
+            <input required type="text" name="username" autocomplete="off" class="text-white bg-slate-900 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Username">
+            <div class="relative">
+              <input required type="password" name="password" autocomplete="off" id="passwordInput" class="text-white bg-slate-900 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Password">
+              <span
+                class="absolute right-4 top-3 cursor-pointer"
+                onclick="togglePasswordVisibility('passwordInput')"
+              >
+                👁️
+              </span>
+            </div>
+            <input required type="number" name="phoneno" class="bg-slate-900 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Phone Number">
+            <div class="flex mx-2 py-1 gap-11">
+              <button type="submit" class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 active:scale-95">Register</button>
+              <button type="reset" class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 active:scale-95">Clear</button>
+            </div>
+          </div>
+        </div>
+      </form>
 </div>
 {% endblock %}
-

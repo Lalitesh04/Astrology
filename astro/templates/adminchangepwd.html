@@ -5,9 +5,32 @@
   <h2 class="flex justify-end text-white text-xl font-Sans px-3"> welcome, {{admin}}</h2>
     <input  class="bg-transparent  mx-96 px-56 text-center font-bold py-3 text-xl rounded-full placeholder:text-white placeholder:hover:text-blue-700" type="text" placeholder="        Change Password" disabled/>
     <center>
-        <form method="post" action="" novalidate>  {% csrf_token %}
-
+        <form method="POST" action="{% url 'changepassword'%}">
+            {% csrf_token %}
+            <div class=" max-w-screen-xl w-80 rounded-2xl bg-slate-900 text-white">
+                <div class="flex flex-col my-2 gap-4 p-8">
+                    <div class="relative">
+                        <input required type="password" name="opwd" autocomplete="off" id="oldPasswordInput" class="text-white bg-slate-900 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder=" Old Password">
+                        <span class="absolute right-4 top-3 cursor-pointer" onclick="togglePasswordVisibility('oldPasswordInput')">👁️</span>
+                    </div>
+                    <div class="relative">
+                        <input required type="password" name="npwd" autocomplete="off" id="newPasswordInput" class="text-white bg-slate-900 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder=" New Password">
+                        <span class="absolute right-4 top-3 cursor-pointer" onclick="togglePasswordVisibility('newPasswordInput')">👁️</span>
+                    </div>
+                    <div class="flex mx-6 py-1 gap-11">
+                        <button type="submit" class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 active:scale-95">Update</button>
+                        <button type="reset" class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 active:scale-95">Clear</button>
+                    </div>
+                </div>
+            </div>
         </form>
     </center>
+    <h2><font color="white">{{message}}</font></h2>
 </div>
+<script>
+    function togglePasswordVisibility(inputId) {
+        var passwordInput = document.getElementById(inputId);
+        passwordInput.type === "password" ? (passwordInput.type = "text") : (passwordInput.type = "password");
+    }
+</script>
 {% endblock %}

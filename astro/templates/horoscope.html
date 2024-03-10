@@ -1,22 +1,14 @@
-<!DOCTYPE html>
+{% extends 'userhome.html'%}
 <html lang="en">
 	<head>
     	<meta charset="utf-8">
     	<meta name="description" content="This is where your description goes">
     	<meta name="keywords" content="one, two, three">
-
 		<title>Horoscope</title>
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/le.css">sty
-
-
 	</head>
-	<body>
     <style>
-        /******************************************
-/* CSS
-/*******************************************/
-
 /* Box Model Hack */
 *{
   box-sizing: border-box;
@@ -51,169 +43,35 @@ text-decoration-color: gray;
 body, html {
   height: 100%;
 }
-body {
-  background-image: url("https://www.sohinisastri.com/wp-content/uploads/2021/05/banner.jpg");
-
-    height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-    nav {
-  background-color: #333; /* change the background color to your desired color */
-  overflow: hidden;
-}
-
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  justify-content: center;
-}
 .message-card {
     background-color: rgba(0, 0, 0, 0.7); /* Background color with some transparency */
     padding: 10px;
     margin: 20px;
     border-radius: 10px; /* Rounded corners for the card */
 }
-nav li {
-  margin: 0;
-}
-
-nav a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 20px;
-  text-decoration: none;
-}
-
-nav a:hover {
-  background-color: #ddd; /* change the hover background color to your desired color */
-  color: black;
-}
-
 </style>
-
-<h3 align="center">ZODIACSIGN</h3>
-<hr><hr>
-<nav>
-    <ul>
-        <li><a href="{% url 'userhome' %}">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-        <li><a href="{% url 'checksign' %}">Check sign</a>&nbsp;&nbsp;</li>
-</li>
-
-        <li><a href="{% url 'horoscope' %}">Horoscope</a>&nbsp;&nbsp;</li>
-        <li><a href="{% url 'userchangepwd' %}">Change Password</a>&nbsp;&nbsp;</li>
-		<li><a href="{% url 'feedback' %}">Feedback</a>&nbsp;&nbsp;</li>
-         <li><a href="{% url 'initiate_payment' %}">Donate</a>&nbsp;&nbsp;</li>
-        <li><a href="{% url 'logout' %}">Logout</a>&nbsp;&nbsp;</li>
-
-         </ul>
-</nav>
+    {% block b1 %}
 <br><br>
 
 <center>
     <div class="message-card">
-	<h2 style="color:white"> Enter your birthday. </h2>
-
 <form method="post" action="{% url 'checkhoroscope' %}"  style="color:white" >
     {% csrf_token %}
-    <table align="center">
-        <tr>
-            <td>
-                <label  style="color:white" >Enter Date</label>
-            </td>
-            <td>
-             <input type="number" id="day" min="1" max="31" name="date"></p></b>
-            </td>
-        </tr>
-
-
-        <tr>
-            <td>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td>
-            </td>
-        </tr>
-
-
-
-
-
-        <tr>
-            <td>
-                <label  style="color:white" >Enter Month</label>
-            </td>
-            <td>
-               <input type="number" id="month" min="1" max="12" name="month" ></p></b>
-            </td>
-
-        </tr>
-
-
-
-
-
-        <tr>
-            <td>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-            </td>
-        </tr>
-
-
-        <tr>
-
-            <td>
-                <input type="submit" value="Login" class="button-1"/>
-            </td>
-            <td>
-                <input type="reset" value="Clear" class="button-1"/>
-            </td>
-
-        </tr>
-    </table>
-
+      <div class=" max-w-screen-xl w-80 rounded-2xl bg-slate-900 text-white">
+          <div class="flex flex-col my-2 gap-4 p-8">
+            <p class="text-center text-3xl text-gray-300 mb-4">Birth Date</p>
+        <input required name="date" type="number" min="1" max="31" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Data">
+        <input required name="month" type="number" min="1" max="12" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Month">
+         <div class="flex mx-4 py-1 gap-11">
+              <button type="submit" class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 active:scale-95">Check</button>
+              <button type="reset" class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 active:scale-95">Clear</button>
+         </div>
+          </div>
+      </div>
 </form></div>
 <div class="message-card">
     <h1>{{zodiac}}</h1><br>
     <b><p style="color:white">{{prediction}}</p></b>
 </div>
-    </center>
-<script type="text/javascript">
-    (function(d, m){
-        var kommunicateSettings =
-            {"appId":"11e5b7d6e4453daa81cf2a87f98ffc28f","popupWidget":true,"automaticChatOpenOnNavigation":true};
-        var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
-        s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
-        var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
-        window.kommunicate = m; m._globals = kommunicateSettings;
-    })(document, window.kommunicate || {});
-/* NOTE : Use web server to view HTML files as real-time update will not work if you directly open the HTML file in the browser. */
-</script>
- <script>
-      document.addEventListener("contextmenu", (event) => {
-         event.preventDefault();
-      });
-   </script>
-     <script type="text/javascript">
-      // Disable the browser's back button
-      history.pushState(null, null, location.href);
-      window.onpopstate = function () {
-         history.go(1);
-      };
-   </script>
+</center>
+{% endblock %}

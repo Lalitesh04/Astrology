@@ -18,10 +18,19 @@
         </div>
     </form>
 </center>
+{% for message in messages %}
+    {% if message.tags %}
+        <script>
+            alert("{{ message }}");
+        </script>
+    {% endif %}
+{% endfor %}
+
 <script>
     function togglePasswordVisibility(inputId) {
         var passwordInput = document.getElementById(inputId);
         passwordInput.type === "password" ? (passwordInput.type = "text") : (passwordInput.type = "password");
     }
 </script>
+
 {% endblock %}

@@ -29,5 +29,9 @@ urlpatterns = [
     path('viewfeedback', views.viewfeedback, name="viewfeedback"),
     path('adminhome', views.adminhome, name="adminhome"),
     path('userregistration', views.userregistration, name="userregistration"),
+    path('rasi', views.rasi, name="rasi"),
+    path("chart", views.chart, name="chart"),
+    path('submit_feedback', views.submit_feedback, name="submit_feedback"),
+    path('marriage/',views.marriage,name="marriage")
 
 ]

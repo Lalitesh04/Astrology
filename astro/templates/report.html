@@ -1,23 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback Report</title>
-    <!-- Import the mpld3 JavaScript library for interactivity -->
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- mpld3 JavaScript library for interactive charts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mpld3/0.5.2/mpld3.min.js"></script>
+    <!-- Enhancing the style with Tailwind CSS -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
-<body>
-    <h1>Feedback Report</h1>
+<body class="bg-gray-100 text-gray-900">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-4">Feedback Report</h1>
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h2 class="text-2xl font-semibold mb-3">Satisfaction Level Chart</h2>
+            <!-- Dynamic chart HTML content -->
+            <div class="chart-content">
+                {{ chart_html|safe }}
+            </div>
+        </div>
 
-    <h2>Satisfaction Level Chart</h2>
-    {{ chart_html|safe }}
-
-    <h2>Summary Statistics</h2>
-    {{ summary_stats|safe }}
-
-   <script>
-      document.addEventListener("contextmenu", (event) => {
-         event.preventDefault();
-      });
-   </script>
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-2xl font-semibold mb-3">Summary Statistics</h2>
+            <!-- Dynamic summary statistics content -->
+            <div class="summary-stats">
+                {{ summary_stats|safe }}
+            </div>
+        </div>
+    </div>
 </body>
 </html>

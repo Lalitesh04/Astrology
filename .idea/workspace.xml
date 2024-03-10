@@ -38,13 +38,14 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/ChatApp&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/SDP&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PSD-SDP\astro\static\css" />
       <recent name="D:\PSD-SDP\astro\static\js" />
       <recent name="$PROJECT_DIR$/astro/static/images" />
       <recent name="$PROJECT_DIR$/astro/images" />
@@ -76,6 +77,11 @@
           <url>file://$PROJECT_DIR$/astro/astro/urls.py</url>
           <line>16</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/astro/astro/settings.py</url>
+          <line>89</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

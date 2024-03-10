@@ -1,101 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title >AstroPrediction</title>
-</head>
-<body>
- <title>
-        {% block 'title' %}
-        Main Home
-        {% endblock %}
-    </title>
-</head>
-<body>
+ {% load static %}
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <link type="text/css" rel="stylesheet" href="{% static 'css/loader.css'%}">
+      <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <style>
+      body, html {
+          height: 100%;
+          margin: 0; /* Add margin: 0 to remove default margin */
+      }
+      body {
+          background-image: radial-gradient(circle at center center, transparent 0%,rgb(0,0,0) 85%),linear-gradient(78deg, rgba(192, 192, 192,0.05) 0%, rgba(192, 192, 192,0.05) 50%,rgba(60, 60, 60,0.05) 50%, rgba(60, 60, 60,0.05) 100%),linear-gradient(227deg, rgba(97, 97, 97,0.05) 0%, rgba(97, 97, 97,0.05) 50%,rgba(52, 52, 52,0.05) 50%, rgba(52, 52, 52,0.05) 100%),linear-gradient(240deg, rgba(98, 98, 98,0.05) 0%, rgba(98, 98, 98,0.05) 50%,rgba(249, 249, 249,0.05) 50%, rgba(249, 249, 249,0.05) 100%),linear-gradient(187deg, rgba(1, 1, 1,0.05) 0%, rgba(1, 1, 1,0.05) 50%,rgba(202, 202, 202,0.05) 50%, rgba(202, 202, 202,0.05) 100%),linear-gradient(101deg, rgba(61, 61, 61,0.05) 0%, rgba(61, 61, 61,0.05) 50%,rgba(254, 254, 254,0.05) 50%, rgba(254, 254, 254,0.05) 100%),linear-gradient(176deg, rgba(237, 237, 237,0.05) 0%, rgba(237, 237, 237,0.05) 50%,rgba(147, 147, 147,0.05) 50%, rgba(147, 147, 147,0.05) 100%),linear-gradient(304deg, rgba(183, 183, 183,0.05) 0%, rgba(183, 183, 183,0.05) 50%,rgba(57, 57, 57,0.05) 50%, rgba(57, 57, 57,0.05) 100%),radial-gradient(circle at center center, hsl(351,4%,12%),hsl(351,4%,12%));
+          height: 100%;
 
-<h3 align="center" style="color:white">ASTROLOGY PREDICTION SYSTEM</h3>
-<hr><hr>
-<style >
-body, html {
-  height: 100%;
-}
-body {
-  background-image: url("https://www.sohinisastri.com/wp-content/uploads/2021/05/banner.jpg");
-    height: 100%;
+      }
+  </style>
+  <body onload="hideLoader()" class="font-sans">
+  <h3 class="text-white  font-serif pt-6 font-semibold flex text-center content-center justify-center  text-xl">ASTROLOGY PREDICTION SYSTEM</h3>
 
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-    nav {
-  background-color: #333; /* change the background color to your desired color */
-  overflow: hidden;
-}
+  <hr class="border-t border-white my-1">
+  <hr class="border-t border-white my-3">
 
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  justify-content: center;
-}
+  <nav class="bg-gray-400 border-gray-200  dark:bg-gray-900">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-1">
+      <a href="{% url 'userhome'%}" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <span class="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white">Astrology </span>
+      </a>
+  <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-black rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+      <span class="sr-only">Open main menu</span>
+      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+  </button>
 
-nav li {
-  margin: 0;
-}
-
-nav a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 20px;
-  text-decoration: none;
-}
-
-nav a:hover {
-  background-color: #ddd ; /* change the hover background color to your desired color */
-  color: black;
-}
-
-</style>
-<nav>
-    <ul>
-        <li><a href="{% url 'userhome' %}">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-        <li><a href="{% url 'checksign' %}">Check sign</a>&nbsp;&nbsp;</li>
-</li>
-
-        <li><a href="{% url 'horoscope' %}">Horoscope</a>&nbsp;&nbsp;</li>
-        <li><a href="{% url 'userchangepwd' %}">Change Password</a>&nbsp;&nbsp;</li>
-        <li><a href="{% url 'feedback' %}">Feedback</a>&nbsp;&nbsp;</li>
-         <li><a href="{% url 'initiate_payment' %}">Donate</a>&nbsp;&nbsp;</li>
-        <li><a href="{% url 'logout' %}">Logout</a>&nbsp;&nbsp;</li>
-
-         </ul>
-</nav>
-<br><br>
-<h3 align="right"style="color:White">Welcome, {{uname}}</h3>
-<h1 style="color:white">Login Successfull</h1>
-<h2 style="color:white">
-    You can check your zodiac sign now!
-    <br>
-
-</h2>
-{%include 'endbar1.html'%}
-</body>
-</body>
-</html>
- <script>
-      document.addEventListener("contextmenu", (event) => {
-         event.preventDefault();
+      <div class="hidden w-full md:block md:w-auto text-white" id="navbar-default">
+        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <li>
+            <a href="{% url 'checksign' %}" class="block py-2 px-3 text-gray-900 bg-blue-700 rounded md:bg-transparent md:p-0 dark:text-white md:dark:text-blue-500 md:hover:text-blue-700" >Zodic Sign</a>
+          </li>
+          <li>
+            <a href="{% url 'horoscope' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Horoscope</a>
+          </li>
+          <li>
+            <a href="{% url 'userchangepwd' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Change Password</a>
+          </li>
+          <li>
+            <a href="{% url 'feedback' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">FeedBack</a>
+          </li>
+          <li>
+            <a href="{% url 'initiate_payment' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Donate</a>
+          </li>
+          <li>
+            <a href="{% url 'logout' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script>
+      $(document).ready(function () {
+          // Add a click event listener to the three dots button
+          $('[data-collapse-toggle="navbar-default"]').on('click', function () {
+              // Toggle the visibility of the mobile menu
+              $('#navbar-default').toggleClass('hidden');
+          });
       });
-   </script>
-<0-
- <script type="text/javascript">
-      // Disable the browser's back button
-      history.pushState(null, null, location.href);
-      window.onpopstate = function () {
-         history.go(1);
-      };
-   </script>
-    {{ redirect_to_login_immediately }}
+  </script>
+  <div class="page-loader">
+      <div class="loader">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+    <div class="bar4"></div>
+    <div class="bar5"></div>
+    <div class="bar6"></div>
+    <div class="bar7"></div>
+    <div class="bar8"></div>
+    <div class="bar9"></div>
+    <div class="bar10"></div>
+    <div class="bar11"></div>
+    <div class="bar12"></div>
+</div>
+  </div>
+
+
+  {% block b1 %}
+  <br><br>
+  <h3  class="text-white justify-end content-end flex text-xl mx-12">Welcome, {{ uname }}</h3>
+  <h1 class="text-white text-lg">Login Successful</h1>
+  <h2 class="text-white text-lg">You can check your zodiac sign now!</h2>
+  {% endblock %}
+
+
+  {% block bot %}
+  <footer class="w-full z-10 left-0 bottom-0 absolute">
+<div class="bg-gray-400 py-3 justify-center content-center flex">
+  <span class="text-sm text-white font-mono sm:text-center dark:text-gray-400 ">© 2024 Team 17  .  All Rights Reserved.
+    </span>
+</div>
+</footer>
+  {% endblock %}
+  <script>
+  function hideLoader(){
+    $('.page-loader').fadeOut('slow');
+  }
+  </script>
+  </body>
+  </html>

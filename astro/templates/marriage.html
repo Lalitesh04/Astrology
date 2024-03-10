@@ -1,0 +1,62 @@
+{% extends 'userhome.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block b1%}
+<div class="flex justify-center gap-44">
+     <form action="{% url 'rasi' %}" method="post" class="max-w-screen-xl w-80 rounded-2xl bg-slate-900 text-white">
+        {% csrf_token %}
+        <div class="flex flex-col my-2 gap-4 p-8">
+            <p class="text-center text-3xl text-gray-300 mb-4">Male Data</p>
+            <input required name="year" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Year">
+
+            <input required name="month" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Month">
+
+            <input required name="date" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Date">
+
+            <input required name="hours" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Hours">
+
+            <input required name="minutes" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Minutes">
+
+            <div class="flex mx-2 py-1 gap-11">
+                <button type="submit" class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 active:scale-95">Generate</button>
+                <button type="reset" class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 active:scale-95">Clear</button>
+            </div>
+        </div>
+    </form>
+     <form action="{% url 'rasi' %}" method="post" class="max-w-screen-xl w-80 rounded-2xl bg-slate-900 text-white">
+        {% csrf_token %}
+        <div class="flex flex-col my-2 gap-4 p-8">
+            <p class="text-center text-3xl text-gray-300 mb-4"></p>
+            <input required name="year" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Year">
+
+            <input required name="month" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Month">
+
+            <input required name="date" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Date">
+
+            <input required name="hours" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Hours">
+
+            <input required name="minutes" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Minutes">
+
+            <div class="flex mx-2 py-1 gap-11">
+                <button type="submit" class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 active:scale-95">Generate</button>
+                <button type="reset" class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 active:scale-95">Clear</button>
+            </div>
+        </div>
+    </form></div>
+{%endblock%}
+</body>
+</html>

@@ -1,8 +1,8 @@
 {% include 'adminhome.html'%}
 
-
-<br><br><br>
 <body>
+<br/>
+<br/><br/><br/>
 <div align="center">
         <button class="button-17" onclick="redirectTo('{% url 'adduser' %}')">Add User</button> &nbsp;
         <button class="button-17" onclick="redirectTo('{% url 'viewuser'%}')">View User</button> &nbsp;
@@ -87,4 +87,27 @@ a {
     text-decoration: none;
     text-color :red;
 }
+         @media (max-width: 600px) {
+            .button-17 {
+                width: 100%; /* Make buttons full width on small screens */
+                margin-bottom: 10px; /* Add some spacing between buttons */
+            }
+
+            /* Responsive table styles */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px; /* Add some space between buttons and table */
+            }
+
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+        }
 </style>

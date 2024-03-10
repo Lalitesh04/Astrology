@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+    <title>Rasi Chart Input</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body onload="hideLoader()">
+
+<nav class="bg-slate-600 border-gray-200 dark:bg-gray-900">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a href="{% url 'userhome'%}" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <span class="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white">Astrology </span>
+    </a>
+ <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+    <span class="sr-only">Open main menu</span>
+    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+    </svg>
+</button>
+
+    <div class="hidden w-full md:block md:w-auto text-white" id="navbar-default">
+      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <li>
+          <a href="{% url 'checksign' %}" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" >Check sign</a>
+        </li>
+           <a href="{% url 'horoscope' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Horoscope</a>
+        <li>
+          <a href="{% url 'userchangepwd' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Change Password</a>
+        </li>
+        <li>
+          <a href="{% url 'feedback' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">FeedBack</a>
+        </li>
+        <li>
+          <a href="{% url 'initiate_payment' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Donate</a>
+        </li>
+        <li>
+          <a href="{% url 'logout' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Add a click event listener to the three dots button
+        $('[data-collapse-toggle="navbar-default"]').on('click', function () {
+            // Toggle the visibility of the mobile menu
+            $('#navbar-default').toggleClass('hidden');
+        });
+    });
+</script>
+
+{% block b1 %}
+<div class="flex items-center justify-center h-screen">
+    <form action="{% url 'rasi' %}" method="post" class="max-w-screen-xl w-80 rounded-2xl bg-slate-900 text-white">
+        {% csrf_token %}
+        <div class="flex flex-col my-2 gap-4 p-8">
+            <p class="text-center text-3xl text-gray-300 mb-4">Zodic Sign</p>
+            <input required name="year" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Year">
+
+            <input required name="month" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Month">
+
+            <input required name="date" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Date">
+
+            <input required name="hours" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Hours">
+
+            <input required name="minutes" type="number" class="bg-slate-900 w-full rounded-lg text-white border border-gray-300 px-4 py-3 focus:outline-none
+                    focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder="Minutes">
+
+            <div class="flex mx-2 py-1 gap-11">
+                <button type="submit" class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 active:scale-95">Generate</button>
+                <button type="reset" class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 active:scale-95">Clear</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    function hideLoader() {
+        $('.page-loader').fadeOut('slow');
+    }
+</script>
+</body>
+</html>

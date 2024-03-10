@@ -1,192 +1,45 @@
-<!DOCTYPE html>
+{% extends 'userhome.html' %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>AstroPrediction</title>
 </head>
 <body>
-    <title>
-        {% block 'title' %}
-        Main Home
-        {% endblock %}
-    </title>
-</head>
+    {% block b1 %}
+        <h2 class="text-white py-4 flex justify-end mx-4 text-xl">Welcome, {{uname}}</h2>
+        <div class="card text-white">
+            <h2 align="center" style="color:#333">{{message}}</h2>
+            <br>
+            <div class="flex justify-center">
+                <form method="post" action="{% url 'userupdatepwd' %}">
+                    {% csrf_token %}
+                    <div class="max-w-screen-xl w-80 rounded-2xl bg-slate-900 text-white">
+                        <p class="text-center text-xl text-gray-300 pt-4 py-2">Change Password</p>
+                        <div class="flex flex-col my-2 gap-4 p-8">
+                            <div class="relative">
+                                <input required type="password" name="opwd" autocomplete="off" id="oldPasswordInput" class="text-white bg-slate-900 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder=" Old Password">
+                                <span class="absolute right-4 top-3 cursor-pointer" onclick="togglePasswordVisibility('oldPasswordInput')">👁️</span>
+                            </div>
+                            <div class="relative">
+                                <input required type="password" name="npwd" autocomplete="off" id="newPasswordInput" class="text-white bg-slate-900 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-800" placeholder=" New Password">
+                                <span class="absolute right-4 top-3 cursor-pointer" onclick="togglePasswordVisibility('newPasswordInput')">👁️</span>
+                            </div>
+                            <div class="flex mx-6 py-1 gap-11">
+                                <button type="submit" class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 active:scale-95">Update</button>
+                                <button type="reset" class="inline-block cursor-pointer rounded-md bg-gray-700 px-4 py-3.5 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 active:scale-95">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script>
+            function togglePasswordVisibility(inputId) {
+                var passwordInput = $("#" + inputId);
+                passwordInput.attr("type") === "password" ? passwordInput.attr("type", "text") : passwordInput.attr("type", "password");
+            }
+        </script>
+    {% endblock %}
 </body>
-
-<h3 align="center" style="color:white">ASTROLOGY PREDICTION SYSTEM</h3>
-<hr><hr>
-<style>
-body, html {
-  height: 100%;
-}
-
-body {
-  background-image: url("https://www.sohinisastri.com/wp-content/uploads/2021/05/banner.jpg");
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-nav {
-  background-color: #333;
-  overflow: hidden;
-}
-
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  justify-content: center;
-}
-
-nav li {
-  margin: 0;
-}
-
-nav a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 20px;
-  text-decoration: none;
-}
-
-nav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-/* Card Styling */
-  width: 100%;
-.card {
-  background-color: rgba(255, 255, 255, 0.6); /* White and semi-transparent */
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px; /* Decreased padding for a smaller card */
-  margin: 20px auto;
-  width: 40%; /* Decreased width for a smaller card */
-}
-
-.card form {
-  text-align: center;
-}
-
-.card label {
-  display: block;
-  margin-bottom: 8px;
-  color: #333;
-}
-
-.card input[type="password"] {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 10px;
-}
-
-.card .button-1 {
-  background-color: #333;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.card .button-1:hover {
-  background-color: #555;
-}
-</style>
-
-<nav>
-    <ul>
-        <li><a href="{% url 'userhome' %}">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-        <li><a href="{% url 'checksign' %}">Check sign</a>&nbsp;&nbsp;</li>
-        </li>
-        <li><a href="{% url 'horoscope' %}">Horoscope</a>&nbsp;&nbsp;</li>
-          <li><a href="{% url 'userchangepwd' %}">Change Password</a>&nbsp;&nbsp;</li>
-        <li><a href="{% url 'feedback' %}">Feedback</a>&nbsp;&nbsp;</li>
-         <li><a href="{% url 'initiate_payment' %}">Donate</a>&nbsp;&nbsp;</li>
-        <li><a href="{% url 'logout' %}">Logout</a>&nbsp;&nbsp;</li>
-    </ul>
-</nav>
-<br><br>
-<h2 align="right" style="color:red">Welcome, {{uname}}</h2><br>
-{% block 'body' %}
-<div class="card">
-    <h2 align="center" style="color:red">{{message}}</h2><br>
-    <h3 align="center"><u>Change Password</u></h3><br>
-    <center>
-    <form method="post" action="{%url 'userupdatepwd'%}" >
-        {% csrf_token %}
-        <table align="center" width="35%" height="30%">
-            <tr>
-                <td>
-                    <label>Enter Old Password</label>
-                </td>
-                <td>
-                    <input type="password" name="opwd" required>
-                </td>
-            </tr>
-
-            <!-- Other form fields go here -->
-
-            <tr>
-                <td>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <label>Enter New Password</label>
-                </td>
-                <td>
-                    <input type="password" name="npwd" required>
-                </td>
-            </tr>
-
-            <!-- Other form fields go here -->
-
-            <tr>
-                <td>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <input type="submit" value="Update" class="button-1"/>
-                </td>
-                <td>
-                    <input type="reset" value="Clear" class="button-1"/>
-                </td>
-            </tr>
-        </table>
-    </form>
-    </center>
-     <script>
-      document.addEventListener("contextmenu", (event) => {
-         event.preventDefault();
-      });
-   </script>
-</div>
-{% endblock %}
 </html>
- <script type="text/javascript">
-      // Disable the browser's back button
-      history.pushState(null, null, location.href);
-      window.onpopstate = function () {
-         history.go(1);
-      };
-   </script>

@@ -1,10 +1,13 @@
+import json
+from io import StringIO
+
 import matplotlib
+import requests
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import registerForm, FeedbackForm
 from .models import register, Feedback, Admin
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -32,15 +35,18 @@ def checklogin(request):
 
         if user:
             request.session["user_name"] = user.name
-            return render(request, "userhome.html", {"user": user})
+            return render(request, "userhome.html", {"uname": user})
         if admin:
             request.session["admin_name"] = admin.name
-            return render(request, "adminhome.html", {"admin": admin})
+            ucount = register.objects.count()
+            fcount = Feedback.objects.count()
+            return render(request, "adminhome.html", {"admin": admin, "ucount": ucount, "fcount": fcount})
         else:
-            return HttpResponse("Invalid Login")
+            messages.error(request, "invalid Login")
+            return redirect('login')
     else:
-        msg = "Incorrect username or password"
-        return render(request, "userlogin.html", {"message": msg})
+        messages.error(request, "invalid Login")
+        return redirect('login')
 
 
 def login(request):
@@ -48,19 +54,26 @@ def login(request):
 
 
 def feedback_form(request):
-    msg = ""
-    form1 = FeedbackForm()
+    return render(request, 'feedbackform.html')
 
+
+def submit_feedback(request):
     if request.method == 'POST':
-        form = FeedbackForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            msg = "Submitted Successfully"
-        else:
-            msg = "Form is not valid. Please check your input."
-
-    return render(request, 'feedbackform.html', {"msg": msg, "form": form1})
+        customer_name = request.POST.get('name')
+        email = request.POST.get('email')
+        contact = request.POST.get('phoneno')
+        feedback_text = request.POST.get('feedback')
+        is_happy = 'happy' in request.POST
+        feedback = Feedback(
+            customer_name=customer_name,
+            email=email,
+            contact=contact,
+            feedback=feedback_text,
+            happy=is_happy
+        )
+        feedback.save()
+        messages.info(request, "FeedBack Submitted Successfully")
+        return redirect(feedback_form)
 
 
 def userhome_render(request):
@@ -286,3 +299,56 @@ def adminhome(request):
     count = register.objects.count()
     fd = Feedback.objects.count()
     return render(request, "adminhome.html", {"admin": admin, "count": count, "fd": fd})
+
+
+def rasi(request):
+    if request.method == "POST":
+        svg_data = None
+        year = int(request.POST.get('year'))
+        month = int(request.POST.get('month'))
+        date = int(request.POST.get('date'))
+        hours = int(request.POST.get('hours'))
+        minutes = int(request.POST.get('minutes'))
+        url = "https://json.freeastrologyapi.com/horoscope-chart-svg-code"
+        payload = json.dumps({
+            "year": year,
+            "month": month,
+            "date": date,
+            "hours": hours,
+            "minutes": minutes,
+            "seconds": 0,
+            "latitude": 17.38333,
+            "longitude": 78.4666,
+            "timezone": 5.5,
+            "config": {
+                "observation_point": "topocentric",
+                "ayanamsha": "lahiri"
+            }
+        })
+
+        headers = {
+            'Content-Type': 'application/json',
+            'x-api-key': 'sVhJNyXEho1paRvj6HgqK61jX3Xfef1xaGkD982m'
+        }
+
+        response = requests.post(url, headers=headers, data=payload)
+
+        if response.status_code == 200:
+            # Parse the JSON response
+            response_json = response.json()
+            # Extract SVG data from the response
+            svg_data = response_json.get("output", "")
+
+            if svg_data:
+                # Pass SVG data to the template
+                return render(request, "checksign.html", {"svg_data": svg_data})
+
+        return render(request, "checksign.html", {"svg_data": None})
+
+
+def chart(request):
+    return render(request, "chart.html")
+
+
+def marriage(request):
+    return render(request, "marriage.html")
