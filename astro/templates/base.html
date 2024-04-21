@@ -10,11 +10,12 @@
 <body id="bg" style="background-image:url('{% static 'images/astro2.jpeg' %}');">
 {% include 'navibar.html' %}
 
-<div class="container">
-    <div class="col-md-6 m-auto">
-        {% block content %}  {% endblock %}
+<div class="container mx-auto">
+    <div class="col-md-8 md:col-md-6 lg:col-md-4 xl:col-md-3 mx-auto">
+        {% block content %} {% endblock %}
     </div>
 </div>
+
 <script type="text/javascript">
       // Disable the browser's back and forward buttons
 window.history.pushState(null, null, location.href);
