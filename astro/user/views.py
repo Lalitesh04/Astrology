@@ -1,7 +1,7 @@
 import json
 import random
 
-import matplotlib
+# import matplotlib
 import requests
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -10,9 +10,9 @@ from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import register, Feedback, Admin
-import pandas as pd
-import matplotlib.pyplot as plt
-import mpld3
+# import pandas as pd
+# import matplotlib.pyplot as plt
+# #import mpld3
 
 
 def index(request):
@@ -212,29 +212,29 @@ def userupdatepwd(request):
     return render(request, "userchangepwd.html", {"uname": uname, "message": msg})
 
 
-def feedback_report(request):
-    # Query the database for feedback data
-    feedback_data = Feedback.objects.all()
-    matplotlib.use('agg')
-    # Convert data to a Pandas DataFrame
-    feedback_df = pd.DataFrame(list(feedback_data.values()))
+# def feedback_report(request):
+#     # Query the database for feedback data
+#     feedback_data = Feedback.objects.all()
+#     matplotlib.use('agg')
+#     # Convert data to a Pandas DataFrame
+#     feedback_df = pd.DataFrame(list(feedback_data.values()))
 
-    # Create a Matplotlib chart
-    plt.figure(figsize=(10, 5))
-    feedback_df['happy'].value_counts().plot(kind='bar')
-    plt.title('Satisfaction Level')
-    plt.xlabel('Satisfaction')
-    plt.ylabel('Count')
+#     # Create a Matplotlib chart
+#     plt.figure(figsize=(10, 5))
+#     feedback_df['happy'].value_counts().plot(kind='bar')
+#     plt.title('Satisfaction Level')
+#     plt.xlabel('Satisfaction')
+#     plt.ylabel('Count')
 
-    # Convert the Matplotlib chart to an interactive HTML format
-    chart_html = mpld3.fig_to_html(plt.gcf())
+#     # Convert the Matplotlib chart to an interactive HTML format
+#     chart_html = mpld3.fig_to_html(plt.gcf())
 
-    context = {
-        'chart_html': chart_html,
-        'summary_stats': feedback_df.describe().to_html(),
-    }
+#     context = {
+#         'chart_html': chart_html,
+#         'summary_stats': feedback_df.describe().to_html(),
+#     }
 
-    return render(request, 'report.html', context)
+#     return render(request, 'report.html', context)
 
 
 def logout_view(request):
