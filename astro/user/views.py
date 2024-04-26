@@ -1,10 +1,11 @@
 import json
-from io import StringIO
+import random
 
 import matplotlib
 import requests
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -37,7 +38,7 @@ def checklogin(request):
             request.session["user_name"] = user.name
             return render(request, "userhome.html", {"uname": user})
         if admin:
-            request.session["admin_name"] = admin.name
+            request.session["admin_name"] = uname
             ucount = register.objects.count()
             fcount = Feedback.objects.count()
             return render(request, "adminhome.html", {"admin": admin, "ucount": ucount, "fcount": fcount})
@@ -47,6 +48,10 @@ def checklogin(request):
     else:
         messages.error(request, "invalid Login")
         return redirect('login')
+
+
+def adminhome(request):
+    return render(request, "adminhome.html")
 
 
 def login(request):
@@ -256,7 +261,7 @@ def checkregistion(request):
         new_register = register(name=name, gender=gender, email=email, username=username, password=password,
                                 contact=phoneno)
         new_register.save()
-        messages.info(request, " Data inserted SuccessFully")
+        messages.info(request, " Registered inserted SuccessFully")
         return render(request, "adduser.html")
 
 
@@ -352,3 +357,66 @@ def chart(request):
 
 def marriage(request):
     return render(request, "marriage.html")
+
+
+def ForgetPassword(request):
+    return render(request, "forgetpassword.html")
+
+
+def generate_otp():
+    otp = ""
+    for _ in range(4):
+        otp += str(random.randint(0, 9))
+    return otp
+
+
+def checkforgot(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        print(email)
+        try:
+            value = register.objects.get(email=email)
+            # print(value)
+            if value:
+                otp = generate_otp()
+                request.session["otp"] = otp
+                subject = 'Your OTP for the change Password'
+                message = "otp:" + otp
+                request.session['femail'] = email
+                send_mail(subject, message, 'lalitesh.mupparaju04@gmail.com', [email], fail_silently=False)
+                return render(request, "otpverify.html")
+        except register.DoesNotExist:
+            messages.info(request, "Email not registered")
+            return render(request, "register.html")
+        except Exception as e:
+            print(e)  # Print the actual exception for debugging purposes
+            return HttpResponse("An error occurred")
+
+
+def checkotp(request):
+    if request.method == "POST":
+        userotp = request.POST["userotp"]
+        otp = request.session["otp"]
+
+        print(otp, userotp)
+        if userotp == otp:
+            return render(request, 'changepass.html')
+        else:
+            messages.info(request, "Otp MisMatch")
+            return render(request, "otpverify.html")
+
+
+def changepass(request):
+    if request.method == "POST":
+        newpassword = request.POST.get('newPassword')
+        confirmPassword = request.POST.get('confirmPassword')
+        femail = request.session['femail']
+        print(newpassword, confirmPassword)
+        if newpassword == confirmPassword:
+            user = register.objects.get(email=femail)
+            user.password = newpassword
+            user.save()
+            return render(request, 'userlogin.html')
+        else:
+            messages.info(request, "Password MisMatch")
+            return render(request, "changepass.html")

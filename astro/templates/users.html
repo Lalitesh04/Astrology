@@ -1,8 +1,9 @@
 {% include 'adminhome.html'%}
-
+ {% block 'body'%}
 <body>
 <br/>
 <br/><br/><br/>
+
 <div align="center">
         <button class="button-17" onclick="redirectTo('{% url 'adduser' %}')">Add User</button> &nbsp;
         <button class="button-17" onclick="redirectTo('{% url 'viewuser'%}')">View User</button> &nbsp;
@@ -111,3 +112,4 @@ a {
             }
         }
 </style>
+{% endblock %}

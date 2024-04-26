@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changepassword</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-200 h-screen flex justify-center items-center">
+    <div class="bg-neutral-200 p-8 rounded-lg shadow-md max-w-md w-full">
+        <h1 class="text-2xl font-semibold mb-4">Change Password</h1>
+        <form action="{% url 'changepass' %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="newPassword" class="block text-sm font-medium text-gray-700">New Password</label>
+                <input type="password" id="newPassword" name="newPassword" required class="mt-1 p-2 block w-full border-gray-800 rounded-md focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div class="mb-4">
+                <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required class="mt-1 p-2 block w-full border-gray-800 rounded-md focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div class="mt-4">
+                <button type="submit" class="w-full bg-[#2a9d8f] text-white py-2 px-4 rounded-md hover:bg-[#ff896b]">Change Password</button>
+            </div>
+        </form>
+    </div>
+{% if messages %}
+    <script>
+        {% for message in messages %}
+            alert('{{ message }}');
+        {% endfor %}
+    </script>
+{% endif %}
+</body>
+</html>

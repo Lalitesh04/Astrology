@@ -24,6 +24,7 @@ urlpatterns = [
     path('viewuser', views.viewuser, name="viewuser"),
     path('checkregistion', views.checkregistion, name="checkregistion"),
     path('deleteuser', views.deleteuser, name="deleteuser"),
+    path('adminhome', views.adminhome, name="adminhome"),
 
     path('deleteuserid/<int:uid>', views.deleteuserid, name="deleteuserid"),
     path('viewfeedback', views.viewfeedback, name="viewfeedback"),
@@ -32,6 +33,11 @@ urlpatterns = [
     path('rasi', views.rasi, name="rasi"),
     path("chart", views.chart, name="chart"),
     path('submit_feedback', views.submit_feedback, name="submit_feedback"),
-    path('marriage/',views.marriage,name="marriage")
+    path('marriage/', views.marriage, name="marriage"),
+
+    path('ForgetPassword', views.ForgetPassword, name="ForgetPassword"),
+    path('checkforgot', views.checkforgot, name="checkforgot"),
+    path('checkotp', views.checkotp, name="checkotp"),
+    path('changepass',views.changepass,name="changepass"),
 
 ]
