@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.templatetags.static import static
 from .models import Payment
 from django.db import transaction
-import razorpay
+# import razorpay
 from django.conf import settings
 
 
